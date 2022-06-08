@@ -1,0 +1,44 @@
+//
+//  LandmarkRow.swift
+//  whereiam
+//
+//  Created by Yurii Troniak on 06.06.2022.
+//
+
+import SwiftUI
+
+struct LandmarkRow: View {
+    var landmark: Landmark
+    
+    var body: some View {
+        HStack {
+            landmark.image
+                .resizable()
+                .frame(width: 50, height: 50)
+            
+            Text(landmark.name)
+            
+            Spacer()
+            
+            if landmark.isFavorite {
+                Image(systemName: "star.fill")
+                    .foregroundColor(.green)
+                    
+            }
+        }
+    }
+}
+
+struct LandmarkRow_Previews: PreviewProvider {
+    static var landmarks = ModelData().landmarks
+    
+    static var previews: some View {
+        Group{
+        LandmarkRow(landmark: landmarks[1])
+            .previewLayout(.fixed(width: 300, height: 70))
+        LandmarkRow(landmark: landmarks[2])
+            .previewLayout(.fixed(width: 300, height: 70))
+        }
+        .previewLayout(.fixed(width: 300, height: 70))
+    }
+}
